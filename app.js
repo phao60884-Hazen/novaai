@@ -1,62 +1,117 @@
-const tools = [
-    {
-        name: "ChatGPT",
-        desc: "OpenAI智能对话助手",
-        category: "对话",
-        url: "https://chat.openai.com"
-    },
-    {
-        name: "Claude",
-        desc: "Anthropic AI助手",
-        category: "对话",
-        url: "https://claude.ai"
-    },
-    {
-        name: "Gemini",
-        desc: "Google AI模型",
-        category: "对话",
-        url: "https://gemini.google.com"
-    },
-    {
-        name: "Midjourney",
-        desc: "AI绘画生成工具",
-        category: "绘画",
-        url: "https://www.midjourney.com"
-    }
-];
+let tools = [];
 
-// 渲染工具
-function renderTools(list){
-    const container = document.getElementById("toolList");
-    container.innerHTML = "";
+async function loadTools(){
 
-    list.forEach(tool => {
-        container.innerHTML += `
-            <a class="tool-card" href="${tool.url}" target="_blank">
-                <h3>${tool.name}</h3>
-                <p>${tool.desc}</p>
-            </a>
-        `;
-    });
+```
+const response =
+    await fetch("tools.json");
+
+tools =
+    await response.json();
+
+renderTools(tools);
+```
+
 }
 
-// 搜索功能（核心升级）
-function searchTool(){
-    let keyword = document.getElementById("searchInput").value.toLowerCase();
+function renderTools(list){
 
-    if(keyword === ""){
-        renderTools(tools);
-        return;
-    }
+```
+const container =
+    document.getElementById("toolList");
 
-    let result = tools.filter(tool =>
-        tool.name.toLowerCase().includes(keyword) ||
-        tool.desc.toLowerCase().includes(keyword) ||
-        tool.category.toLowerCase().includes(keyword)
+container.innerHTML = "";
+
+list.forEach(tool => {
+
+    container.innerHTML += `
+
+    <a
+        class="tool-card"
+        href="${tool.url}"
+        target="_blank"
+    >
+
+        <div class="tool-logo">
+            ${tool.logo}
+        </div>
+
+        <h3>${tool.name}</h3>
+
+        <span class="category">
+            ${tool.category}
+        </span>
+
+        <p>${tool.desc}</p>
+
+    </a>
+
+    `;
+
+});
+```
+
+}
+
+function filterTools(category){
+
+```
+if(category==="全部"){
+
+    renderTools(tools);
+
+    return;
+
+}
+
+const result =
+    tools.filter(
+        tool =>
+        tool.category===category
     );
 
-    renderTools(result);
+renderTools(result);
+```
+
 }
 
-// 初始加载
-renderTools(tools);
+document.addEventListener(
+"DOMContentLoaded",
+()=>{
+
+```
+    loadTools();
+
+    document
+    .getElementById("searchInput")
+    .addEventListener(
+        "input",
+        function(){
+
+            const keyword =
+            this.value.toLowerCase();
+
+            const result =
+            tools.filter(tool =>
+
+                tool.name
+                .toLowerCase()
+                .includes(keyword)
+
+                ||
+
+                tool.desc
+                .toLowerCase()
+                .includes(keyword)
+
+            );
+
+            renderTools(result);
+
+        }
+    );
+
+}
+```
+
+);

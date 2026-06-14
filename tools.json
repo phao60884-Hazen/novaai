@@ -1,0 +1,37 @@
+[
+  {
+    "name": "ChatGPT",
+    "category": "对话",
+    "logo": "🤖",
+    "desc": "OpenAI智能助手",
+    "url": "https://chatgpt.com"
+  },
+  {
+    "name": "Claude",
+    "category": "对话",
+    "logo": "🧠",
+    "desc": "Anthropic AI助手",
+    "url": "https://claude.ai"
+  },
+  {
+    "name": "Gemini",
+    "category": "对话",
+    "logo": "✨",
+    "desc": "Google AI模型",
+    "url": "https://gemini.google.com"
+  },
+  {
+    "name": "Midjourney",
+    "category": "绘画",
+    "logo": "🎨",
+    "desc": "AI绘画生成工具",
+    "url": "https://www.midjourney.com"
+  },
+  {
+    "name": "Runway",
+    "category": "视频",
+    "logo": "🎬",
+    "desc": "AI视频生成平台",
+    "url": "https://runwayml.com"
+  }
+]
